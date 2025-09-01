@@ -1,0 +1,22 @@
+.bodyElement {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 7fr;
+  grid-template-columns: 1fr;
+}
+
+.mainHeader {
+  grid-row: 1/2;
+  justify-self: center;
+}
+
+.newGameArea {
+  grid-row: 2/3;
+}
+
+.scoresArea {
+  grid-row: 3/4;
+}
+
+.cardArea {
+  grid-row: 4/5;
+}
