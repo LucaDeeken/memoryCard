@@ -1,6 +1,6 @@
 .bodyElement {
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 7fr;
+  grid-template-rows: 80px 60px 60px auto;
   grid-template-columns: 1fr;
 }
 
@@ -11,6 +11,8 @@
 
 .newGameArea {
   grid-row: 2/3;
+  display: grid;
+  justify-content: center;
 }
 
 .scoresArea {
@@ -18,5 +20,42 @@
 }
 
 .cardArea {
+  display: flex;
   grid-row: 4/5;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0vh 10vw 0vh 10vw;
+  border: 2px solid black;
+  padding: 5vw;
+  border-radius: 40px;
+}
+
+.card {
+  border: 2px solid black;
+  border-radius: 10px;
+  height: 180px;
+  width: 180px;
+}
+
+@media (max-width: 1200px) {
+  .card {
+    border-radius: 10px;
+    height: 160px;
+    width: 160px;
+  }
+
+  .cardArea {
+    gap: 1rem;
+    padding: 4vw;
+    border-radius: 40px;
+  }
+}
+
+@media (max-width: 750px) {
+  .card {
+    border-radius: 10px;
+    height: 130px;
+    width: 130px;
+  }
 }
