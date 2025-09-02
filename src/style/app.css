@@ -32,10 +32,28 @@
 }
 
 .card {
+  display: grid;
+  position: relative;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
   border: 2px solid black;
   border-radius: 10px;
   height: 180px;
   width: 180px;
+}
+
+.pokemonName {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.pokemonImage {
+  transform: scale(1.0);
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  transform: scale(1.15);
 }
 
 @media (max-width: 1200px) {
