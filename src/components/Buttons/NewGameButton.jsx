@@ -1,32 +1,45 @@
-import Modal from "../Modal.jsx"
+import Modal from "../Modal.jsx";
 import { useState } from "react";
 
-function NewGameButton() {
-
-const [isModalOpen, setIsModalOpen] = useState(false);
-
-
-function closeModal() {
-  setIsModalOpen(false);
-}
-
-function openModal() {
-  setIsModalOpen(true);
-}
-
+function NewGameButton( {isModalOpen, openModal, closeModal, setGameRunning, setDifficulty } ) {
+  
 
   return (
     <>
-      <button onClick={() =>openModal()}>New Game!</button>
+      <button onClick={() => openModal()}>New Game!</button>
 
-      {isModalOpen &&(
-        <Modal >
-          <button onClick={() => closeModal()}>Close it</button>
-          <p>Yow</p>
+      {isModalOpen && (
+        <Modal>
+            <p>Chose your Difficulty!</p>
+            <button
+              onClick={() => {
+                closeModal();
+                setGameRunning(true);
+                setDifficulty(5);
+              }}
+            >
+              Easy
+            </button>
+            <button
+              onClick={() => {
+                closeModal();
+                setGameRunning(true);
+                setDifficulty(10);
+              }}
+            >
+              Medium
+            </button>
+            <button
+              onClick={() => {
+                closeModal();
+                setGameRunning(true);
+                setDifficulty(15);
+              }}
+            >
+              Hard
+            </button>
         </Modal>
-      )
-      
-      }
+      )}
     </>
   );
 }
