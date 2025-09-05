@@ -1,12 +1,16 @@
 import Modal from "../Modal.jsx";
 import { useState } from "react";
 
-function NewGameButton( {isModalOpen, openModal, closeModal, setGameRunning, setDifficulty } ) {
+function NewGameButton( {isModalOpen, openModal, closeModal, setGameRunning, setDifficulty, setCounter, setObjectList } ) {
   
 
   return (
     <>
-      <button onClick={() => openModal()}>New Game!</button>
+      <button onClick={() => {
+        setCounter(0);
+        setObjectList([]);
+        openModal();
+      }}>New Game!</button>
 
       {isModalOpen && (
         <Modal>
