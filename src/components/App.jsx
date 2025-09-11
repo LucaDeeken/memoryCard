@@ -57,8 +57,8 @@ function App() {
   }
 
   //increases the counter and also puts the clicked Ids in an array, which keeps track of the cards, that already got clicked.
-  function increaseCounter(id) {
-    if (clickedIds.includes(id)) {
+  function increaseCounter(card) {
+    if (clickedIds.includes(card.id)) {
       if (counter + 1 > highScore) {
         setHighscore(counter);
       }
@@ -66,7 +66,7 @@ function App() {
       setgameOver(true);
     } else {
       setCounter((prevCounter) => prevCounter + 1);
-      setClickedIds((prevList) => [...prevList, id]);
+      setClickedIds((prevList) => [...prevList, card.id]);
       if (counter + 1 === difficulty) {
         setWin(true);
         setWinModal(true);
@@ -99,10 +99,22 @@ function App() {
     if (gameOver) {
       setGameoverModal(true);
       setNoClick(true);
+      markCardsWithColor();
     } else {
       return;
     }
   }, [gameOver]);
+
+//if the game ends, this one marks the cards with a color. red if already clicked, green if not.
+  function markCardsWithColor() {
+    const newList = cardObjectList.map((card) => {
+      return {
+        ...card,
+        clicked: clickedIds.includes(card.id)
+      };
+    });
+    setObjectList(newList);
+  }
 
   //Loads the pokemons from PokeAPI when the game starts
   useEffect(() => {
@@ -147,6 +159,7 @@ function App() {
           id: crypto.randomUUID(),
           pokemon: obj.name,
           picture: obj.sprites.front_default,
+          clicked: null,
         }));
 
         if (catchEmAll) {

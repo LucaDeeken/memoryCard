@@ -16,7 +16,7 @@ function Card({
       <div
         className="card"
         onClick={() => {
-          increaseCounter(card.id);
+          increaseCounter(card);
           rotateCards(card.id);
         }}
         style={{
@@ -28,10 +28,10 @@ function Card({
           className="card-inner"
           style={{
             transform: flipped
-              ? "rotateY(180deg)" // Wenn rotate true ist
+              ? "rotateY(180deg)" 
               : rotate
-                ? "rotateY(180deg)" // Wenn rotate false, aber isNew true ist
-                : "rotateY(0deg)", // Wenn beide false sind
+                ? "rotateY(180deg)"
+                : "rotateY(0deg)",
           }}
         >
           <div className="card-front">
@@ -41,11 +41,12 @@ function Card({
               className="pokemonImage"
               style={{
                 ...(catchEmAll ? { transform: "scale(1)" } : {}),
-                backgroundColor: gameOver
+                backgroundColor: 
+                gameOver || win
+                ? card.clicked
                 ? "#f15d5dff"
-                : win
-                ? "#5df17dff"
-                : "auto"
+                : "#5df17dff" 
+                : "transparent" 
               }}
                         
             ></img>
