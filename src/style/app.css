@@ -5,33 +5,30 @@ html {
   height: 100vh;
 }
 
-#bannerContainer {
-  background-color: black;
-  color: lime;
-  border: 1px solid red;
-  font-size: 12px;
-}
-
 .bodyElement {
   display: grid;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   gap: 3vh;
-  grid-template-rows: 140px 60px 60px min-content;
+  grid-template-rows: 180px 60px 60px min-content;
   grid-template-columns: 1fr;
   font-family: "Press Start 2P", system-ui;
   font-weight: 400;
   font-size: 13px;
   font-style: normal;
+  background-repeat: repeat; 
+  background-size: auto; 
+  background-position: top center;
 }
 
 .mainHeader {
   grid-row: 1/2;
   justify-self: center;
-  font-family: monospace;
   text-align: center;
   font-family: monospace;
   white-space: pre;
+  font-size: 16px;
+  font-weight: 800;
 }
 
 .newGameArea {
@@ -40,6 +37,28 @@ html {
   justify-content: center;
 }
 
+.newGameBtn {
+  font-size: 14px;
+  border-radius: 8px;
+  width: 180px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px rgb(0, 0, 0);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+  align-content: start;
+}
+
+.newGameBtn:hover {
+  background: linear-gradient(
+    45deg,
+    #fa4747,
+    #f3cf4e,
+    #49f3c6,
+    #3e48d3
+  );
+  animation: gradient 4s ease infinite;
+}
 .scoresArea {
   grid-row: 3/4;
   display: grid;
@@ -49,12 +68,156 @@ html {
   gap: 10vw;
 }
 
+/*modal*/
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+.modal-content {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+  font-family: "Press Start 2P", system-ui;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 430px;
+  height: 250px;
+  position: relative;
+  border: 5px solid black;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transform: scale(0);
+  animation: slideIn 0.3s forwards;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  to {  transform: scale(1);; }
+}
+
+
+.difficultyText {
+  grid-column: 1/4;
+  display: grid;
+  text-align: center;
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+
+.difficultyEasyBtn {
+  grid-column: 1/2;
+  font-size: 11px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px rgb(0, 0, 0);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+.difficultyMediumBtn {
+  grid-column: 2/3;
+  font-size: 11px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px rgb(0, 0, 0);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+.difficultyHardBtn {
+  grid-column: 3/4;
+  font-size: 11px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px rgb(0, 0, 0);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+.catchAllBtn {
+  grid-row: 3/4;
+  grid-column: 1/4;
+  height: 50px;
+  margin: 0 40px 0 40px;
+  font-size: 11px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px rgb(0, 0, 0);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+.difficultyHardBtn:hover {
+  color: white;
+  background-color: rgb(250, 39, 39);
+}
+
+.difficultyMediumBtn:hover {
+  color: white;
+  background-color: rgb(240, 220, 38);
+}
+.catchAllBtn:hover {
+  background: linear-gradient(
+    45deg,
+    #fa4747,
+    #f3cf4e,
+    #49f3c6,
+    #3e48d3
+  );
+  animation: gradient 4s ease infinite;
+}
+
+.difficultyEasyBtn:hover {
+  color: white;
+  background-color: rgb(54, 245, 79);
+}
+
 .currentScore {
   justify-self: end;
+  background-color: rgba(200, 239, 255, 0.8);
+  padding: 1.2vw;
+  border-radius: 40px;
+  font-size: 16px;
+  border: 4px solid black;
 }
 
 .highScore {
   justify-self: start;
+  background-color: rgba(200, 239, 255, 0.8);
+  padding: 1.2vw;
+  border-radius: 40px;
+  font-size: 16px;
+  border: 4px solid black;
 }
 
 .cardArea {
@@ -63,17 +226,25 @@ html {
   gap: 2rem;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 0vh 10vw 0vh 10vw;
-  border: 2px solid black;
-  padding: 5vw;
+  margin: 3vh 17vw 0vh 17vw;
+  background-color: rgba(200, 239, 255, 0.8);
+  padding: 3vw;
   border-radius: 40px;
+  border: 4px solid black;
+  transform-origin: top;
+  transform: scaley(0);
+  transition: transform 1s ease;
+}
+
+.grown {
+  transform: scaley(1);
 }
 
 .card {
-
-  height: 160px;
-  width: 160px;
+  height: 116px;
+  width: 116px;
   perspective: 1000px;
+  cursor: pointer;
 }
 
 .card-inner {
@@ -84,19 +255,34 @@ html {
   transition: transform 0.6s;
 }
 
+.card-back {
+  height: 100%;
+  width: 100%;
+}
+
+.card-back-image {
+  height: 100%;
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 8px;
+}
 
 .card-front,
 .card-back {
   position: absolute;
   width: 100%;
   height: 100%;
-  backface-visibility: hidden; /* Rückseite wird versteckt */
+  backface-visibility: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 20px;
-  border: 1px solid #333;
+  border: 2px solid #333;
   border-radius: 8px;
+}
+
+.card-front:hover {
+  background-color: rgb(248, 243, 243);
 }
 
 .pokemonImage {
@@ -107,7 +293,7 @@ html {
 }
 
 .card-front {
-  background: lightblue;
+  background: rgb(209, 235, 243);
 }
 
 .card-back {
@@ -115,51 +301,83 @@ html {
   transform: rotateY(180deg);
 }
 
+/* gameover Mod*/
+
+.gameOverMod {
+  display: grid;
+  grid-column: 1/4;
+  grid-row: 1/4;
+  text-align: center;
+}
+
+.gameOverMod button {
+  width: 60%;
+  justify-self: center;
+  height: 50px;
+  margin: 20px 40px 0 40px;
+  font-size: 11px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px rgb(0, 0, 0);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+.gameOverMod button:hover {
+  color: white;
+  background-color: rgb(250, 39, 39);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 5px #ff0055;
+  }
+  50% {
+    box-shadow: 0 0 30px #ff0055;
+  }
+  100% {
+    box-shadow: 0 0 5px #ff0055;
+  }
+}
+
 @media (max-width: 1200px) {
   .card {
     border-radius: 10px;
-    height: 160px;
-    width: 160px;
+    height: 116px;
+    width: 116px;
   }
 
   .cardArea {
-    gap: 1rem;
+    gap: 1.5rem;
     padding: 4vw;
     border-radius: 40px;
+  }
+
+  .bodyElement {
+    background-repeat: repeat; 
+    background-size: auto; 
+  }
+
+  .currentScore {
+    font-size: 14px;
+    padding: 2.5vw;
+  }
+
+  .highScore {
+    font-size: 14px;
+    padding: 2.5vw;
   }
 }
 
 @media (max-width: 750px) {
+  .bodyElement {
+    grid-template-rows: 140px 60px 60px min-content;
+  }
+
   .mainHeader {
-    font-size: 10px;
-  }
-
-  .card {
-    border-radius: 10px;
-    height: 130px;
-    width: 130px;
-    font-size: 10px;
-  }
-
-  .pokemonImage {
-    transform: scale(1);
-  }
-
-  .scoresArea {
-    font-size: 10px;
-  }
-
-  .cardArea {
-    margin: 0;
-    width: 90vw;
-    display: flex;
-    justify-self: center;
-  }
-}
-
-@media (max-width: 500px) {
-  .mainHeader {
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 800;
   }
 
   .card {
@@ -179,40 +397,112 @@ html {
 
   .cardArea {
     margin: 0;
-    width: 90vw;
+    margin-right: 5px;
+    width: 95vw;
     display: flex;
     justify-self: center;
   }
+
+  .bodyElement {
+    background-repeat: repeat;
+    background-size: auto;
+  }
+
+  .currentScore {
+    font-size: 12px;
+    padding: 2.5vw;
+  }
+
+  .highScore {
+    font-size: 12px;
+    padding: 2.5vw;
+  }
 }
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
+@media (max-width: 500px) {
+  .bodyElement {
+    grid-template-rows: 100px 60px 60px min-content;
+  }
+
+  .mainHeader {
+    font-size: 8px;
+    font-weight: 800;
+  }
+
+  .card {
+    border-radius: 10px;
+    height: 100px;
+    width: 100px;
+    font-size: 10px;
+  }
+
+  .pokemonImage {
+    transform: scale(1);
+  }
+
+  .scoresArea {
+    font-size: 8px;
+    gap: 5vw;
+  }
+
+  .cardArea {
+    margin: 0;
+    padding: 4vw;
+    gap: 2vw;
+    width: 95vw;
+    display: flex;
+    justify-self: center;
+  }
+
+  .bodyElement {
+    background-repeat: repeat;
+    background-size: auto; 
+  }
+
+  .currentScore {
+    font-size: 10px;
+    padding: 2.5vw;
+  }
+
+  .highScore {
+    font-size: 10px;
+    padding: 2.5vw;
+  }
 }
 
-.modal-content {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  min-width: 300px;
-  max-width: 600px;
-  position: relative;
-}
+@media (max-width: 375px) {
+  .mainHeader {
+    font-size: 7px;
+  }
 
-.modal-close {
-  position: absolute;
-  top: 10px;
-  right: 12px;
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+  .card {
+    border-radius: 10px;
+    height: 100px;
+    width: 100px;
+    font-size: 10px;
+  }
+
+  .pokemonImage {
+    transform: scale(1);
+  }
+
+  .scoresArea {
+    font-size: 8px;
+    gap: 5vw;
+  }
+
+  .cardArea {
+    margin: 0;
+    padding: 4vw;
+    gap: 2vw;
+    width: 95vw;
+    display: flex;
+    justify-self: center;
+  }
+
+  .bodyElement {
+    background-repeat: repeat;
+    background-size: auto; 
+    height: 100%;
+  }
 }

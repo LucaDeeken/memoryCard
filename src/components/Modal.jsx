@@ -7,7 +7,7 @@ function Modal({ children, onClose }) {
         {children}
       </div>
     </div>,
-    document.getElementById("modal-root")
+    document.getElementById("modal-root"),
   );
 }
 
